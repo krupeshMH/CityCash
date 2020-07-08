@@ -49,8 +49,8 @@ constructor(private val api: GetProductListAPI) : ViewModel() {
                 if (searchResponse != null) {
                     productDetail.value = Resource.success(searchResponse)
                 }
-            }, {
-                productDetail.setValue(Resource.error("Something went wrong!!!", null))
+            }, {throwable->
+                productDetail.setValue(Resource.error(throwable.message ?:"Something went wrong!!!", null))
             })
     }
 }
